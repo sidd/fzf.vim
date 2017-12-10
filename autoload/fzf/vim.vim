@@ -784,7 +784,7 @@ function! s:tags_sink(lines)
     for line in a:lines[1:]
       try
         let parts   = split(line, '\t\zs')
-        let excmd   = matchstr(join(parts[2:-2], '')[:-2], 'lineno:\zs.*\zenamespace')
+        let excmd   = matchstr(join(parts[2:-2], '')[:-2], 'lineno:\zs.\{-}\ze\s')
         let base    = fnamemodify(parts[-1], ':h')
         let relpath = parts[1][:-2]
         let abspath = relpath =~ (s:is_win ? '^[A-Z]:\' : '^/') ? relpath : join([base, relpath], '/')
